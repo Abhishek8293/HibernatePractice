@@ -5,7 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "employee_table")
@@ -19,6 +21,31 @@ public class Employee {
 	private String employeeName;
 	@Column(name = "employee_address")
 	private String employeeAddress;
+	
+	@Column(name = "emplyee_image")
+	@Lob
+	private byte[] image;
+	
+	@Transient
+	private double x;
+	
+	
+
+	public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
+
+	public double getX() {
+		return x;
+	}
+
+	public void setX(double x) {
+		this.x = x;
+	}
 
 	public Integer getEmployeeId() {
 		return employeeId;
@@ -44,12 +71,15 @@ public class Employee {
 		this.employeeAddress = employeeAddress;
 	}
 
-	public Employee(Integer employeeId, String employeeName, String employeeAddress) {
+	public Employee(Integer employeeId, String employeeName, String employeeAddress, byte[] image, double x) {
 		super();
 		this.employeeId = employeeId;
 		this.employeeName = employeeName;
 		this.employeeAddress = employeeAddress;
+		this.image = image;
+		this.x = x;
 	}
+
 
 	public Employee() {
 		super();
