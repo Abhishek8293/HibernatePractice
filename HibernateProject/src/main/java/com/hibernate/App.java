@@ -15,9 +15,11 @@ public class App {
 	public static void main(String[] args) {
 		System.out.println("project started");
 
+		//Create a Session Factory Object using Configuration class
 		SessionFactory sessionFactory = new Configuration().configure("com/hibernate/hibernate.cfg.xml")
 				.buildSessionFactory();
 
+		
 		Session session = sessionFactory.openSession();
 
 		Employee employee = new Employee();
