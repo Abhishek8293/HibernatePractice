@@ -27,8 +27,12 @@ public class App {
 		employee.setEmployeeAddress("Texas");
 		employee.setX(1234);
 
+		//Reading the image file and converting into byte of stream
 		FileInputStream fis = new FileInputStream("C:/Users/LENOVO/Downloads/GMZ8NDTXAAA4DC1.jpeg");
-		byte[] image = new byte[fis.available()];
+		//creating an byte [] to store the byte of stream
+		//fis.available() is used to define the size of array equals to the byte of stream.
+ 		byte[] image = new byte[fis.available()];
+ 		//Reading the byte stream to byte array named "image"
 		fis.read(image);
 		employee.setImage(image);
 
