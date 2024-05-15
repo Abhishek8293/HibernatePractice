@@ -17,8 +17,6 @@ public class App {
 
 		SessionFactory sessionFactory = new Configuration().configure("com/hibernate/hibernate.cfg.xml")
 				.buildSessionFactory();
-		// System.out.println(sessionFactory);
-		// System.out.println(sessionFactory.isClosed());
 
 		Session session = sessionFactory.openSession();
 
