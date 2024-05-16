@@ -23,9 +23,11 @@ public class App {
 
 		// Create an object of Entity class
 		Employee employee = new Employee();
-		employee.setEmployeeName("John Doe");
-		employee.setEmployeeAddress("Texas");
-		employee.setX(1234);
+//		employee.setEmployeeName("Jena Ortega");
+//		employee.setEmployeeAddress("California");
+//		employee.setX(1234);
+		employee.setEmployeeId(1);
+		
 
 		//Reading the image file and converting into byte of stream
 		FileInputStream fis = new FileInputStream("C:/Users/LENOVO/Downloads/GMZ8NDTXAAA4DC1.jpeg");
@@ -41,7 +43,13 @@ public class App {
 			Transaction tx = session.beginTransaction();
 
 			// save the object using the save() method of session object
-			session.save(employee);
+			//session.save(employee);
+			//session.delete(employee);
+		 Employee result = 	session.get(Employee.class, 4); //To get the object from database
+		 result.setEmployeeName("updated");
+		 session.update(result);
+		 
+		
 
 			// Commit all the changes
 			tx.commit();
