@@ -1,6 +1,7 @@
 package com.hibernate.entity;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,7 +30,20 @@ public class Employee {
 	@Transient
 	private double x;
 	
+	@Embedded
+	private Bank bank;
 	
+	
+	
+	
+
+	public Bank getBank() {
+		return bank;
+	}
+
+	public void setBank(Bank bank) {
+		this.bank = bank;
+	}
 
 	public byte[] getImage() {
 		return image;
@@ -71,13 +85,14 @@ public class Employee {
 		this.employeeAddress = employeeAddress;
 	}
 
-	public Employee(Integer employeeId, String employeeName, String employeeAddress, byte[] image, double x) {
+	public Employee(Integer employeeId, String employeeName, String employeeAddress, byte[] image, double x,Bank bank) {
 		super();
 		this.employeeId = employeeId;
 		this.employeeName = employeeName;
 		this.employeeAddress = employeeAddress;
 		this.image = image;
 		this.x = x;
+		this.bank = bank;
 	}
 
 

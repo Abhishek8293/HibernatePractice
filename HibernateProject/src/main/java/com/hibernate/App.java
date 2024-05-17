@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import com.hibernate.entity.Bank;
 import com.hibernate.entity.Employee;
 
 public class App {
@@ -21,35 +22,41 @@ public class App {
 		// Open session using session Factory object
 		Session session = sessionFactory.openSession();
 
-		// Create an object of Entity class
-		Employee employee = new Employee();
-//		employee.setEmployeeName("Jena Ortega");
-//		employee.setEmployeeAddress("California");
-//		employee.setX(1234);
-		employee.setEmployeeId(1);
-		
-
-		//Reading the image file and converting into byte of stream
+		// Reading the image file and converting into byte of stream
 		FileInputStream fis = new FileInputStream("C:/Users/LENOVO/Downloads/GMZ8NDTXAAA4DC1.jpeg");
-		//creating an byte [] to store the byte of stream
-		//fis.available() is used to define the size of array equals to the byte of stream.
- 		byte[] image = new byte[fis.available()];
- 		//Reading the byte stream to byte array named "image"
+		// creating an byte [] to store the byte of stream
+		// fis.available() is used to define the size of array equals to the byte of
+		// stream.
+		byte[] image = new byte[fis.available()];
+		// Reading the byte stream to byte array named "image"
 		fis.read(image);
-		employee.setImage(image);
+
+		Bank bank1 = new Bank();
+		bank1.setBankName("SBI");
+		bank1.setBankLocation("Raipur");
+
+		Bank bank2 = new Bank();
+		bank2.setBankName("HDFC");
+		bank2.setBankLocation("Pachpedi Naka");
+
+		Employee emp1 = new Employee();
+		emp1.setEmployeeName("name1");
+		emp1.setEmployeeAddress("address 1 ");
+		emp1.setImage(image);
+		emp1.setBank(bank1);
+
+		Employee emp2 = new Employee();
+		emp2.setEmployeeName("name2");
+		emp2.setEmployeeAddress("address 2 ");
+		emp2.setImage(image);
+		emp2.setBank(bank2);
 
 		try {
 			// Begin the transaction
 			Transaction tx = session.beginTransaction();
 
-			// save the object using the save() method of session object
-			//session.save(employee);
-			//session.delete(employee);
-		 Employee result = 	session.get(Employee.class, 4); //To get the object from database
-		 result.setEmployeeName("updated");
-		 session.update(result);
-		 
-		
+			session.save(emp1);
+			session.save(emp2);
 
 			// Commit all the changes
 			tx.commit();
